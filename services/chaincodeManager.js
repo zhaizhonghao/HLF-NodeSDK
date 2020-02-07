@@ -45,8 +45,63 @@ exports.installChaincode = async function(orgName,peers,chaincodePath,chaincodeI
 };
 
 //To instantiate the installed chaincode
-exports.instantiateChaincode = async function(){
+exports.instantiateChaincode = async function(orgName,peers,chaincodeId,chaincodeVersion,channelNames,chaincodeType,functionName,args){
+    //setup the channel
+    let client = await setupClient(orgName);
+    let channel = await setupChannel(client,channelNames);
+
+    //generate a transaction ID
+    let tx_id = client.newTransactionID(true);
+    //create the ChaincodeInstantiateUpgradeRequest object
+    var request = {
+        targets : peers,
+        chaincodeId: chaincodeId,
+        chaincodeType: chaincodeType,
+        chaincodeVersion: chaincodeVersion,
+        args: args,
+        txId: tx_id
+    };
+    //to set the init function Name
+    if (functionName)
+        request.fcn = functionName;
+    //to send the chaincode instantiate proposal and set the timeout to be 60000 miliseconds
+    let results = await channel.sendInstantiateProposal(request, 60000);
+    //the returned object has both the endorsement results and the actual proposal, the proposal will
+    //be need later when we send a transaction to the orderer
+    var proposalResponses = results[0];
+    var proposal = results[1];
+    //to check the responses if they are all good, if yes, they will then include signatures required to be committed
+    let allGood = true;
+    for (var i in proposalResponses) {
+        let oneGood = false;
+        if (proposalResponses && proposalResponses[i].response &&
+            proposalResponses[i].response.status === 200) {
+            oneGood = true;
+            console.log('instantiate proposal was good');
+        } else {
+            console.log('instantiate proposal was bad');
+        }
+        allGood = allGood & oneGood;
+    }
+    //TODO
+    if (allGood) {
+        //wait for the channel-based event hub to tell us that
+        //the instantiate transaction was committed on the peer
+        let promises = [];
+        let eventHubs = channel.getChannelEventHubsForOrg();
+        console.log(`found ${eventHubs.length} for this organization ${orgName}`);
+        
+
+    }
+
+
+
+
     
+
+
+
+
 };
 
 /**
@@ -88,4 +143,17 @@ async function setupClient(orgName) {
     client.setUserContext(userContext, true)
 
     return client
+}
+
+async function setupChannel(client,channelName) {
+    try {
+        // Get the Channel class instance from client
+        channel = await client.getChannel(channelName, true)
+    } catch (e) {
+        console.log("Could NOT create channel: ", channelName)
+        process.exit(1)
+    }
+    console.log("Created channel object.")
+
+    return channel
 }

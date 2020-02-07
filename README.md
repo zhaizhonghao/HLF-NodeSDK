@@ -5,8 +5,16 @@
 # Description
 This project shows the RESTful API built on the fabric nodeSDK using node Express.
 ***
-# Install
-TODO
+# Build
+To get the dependencies
+
+run
+
+```js
+npm install
+```
+
+And copy the sub-folder of the **chaincode**  into your `$GOPATH/src`
 ***
 # DOC for API
 TODO
