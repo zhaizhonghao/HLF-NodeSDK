@@ -54,6 +54,10 @@ exports.instantiateChaincode = async function(orgName,peers,chaincodeId,chaincod
 
     //generate a transaction ID
     let tx_id = client.newTransactionID(true);
+
+
+    // will need the transaction ID string for the event registration later
+    var deployId = tx_id.getTransactionID();
     //create the ChaincodeInstantiateUpgradeRequest object
     let targets = []
     for (let index = 0; index < peers.length; index++) {
@@ -162,7 +166,7 @@ exports.instantiateChaincode = async function(orgName,peers,chaincodeId,chaincod
         // now see what each of the event hubs reported
         for(let i in results) {
             let event_hub_result = results[i];
-            let event_hub = event_hubs[i];
+            let event_hub = eventHubs[i];
             console.log('Event results for event hub :%s',event_hub.getPeerAddr());
             if(typeof event_hub_result === 'string') {
                 console.log(event_hub_result);

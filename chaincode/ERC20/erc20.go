@@ -50,7 +50,7 @@ func (token *ERC20TokenChaincode) Init(stub shim.ChaincodeStubInterface) peer.Re
 
 	// Check if we received the right number of arguments
 	if len(args) < 4 {
-		return shim.Error("Failed - incorrect number of parameters!! ")
+		return shim.Error("Failed - incorrect number of parameters!!!!!"+len(args)+args)
 	}
 	symbol := string(args[0])
 	// Get total supply & check if it is > 0
