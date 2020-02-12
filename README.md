@@ -7,7 +7,8 @@ This project shows the RESTful API built on the fabric nodeSDK using node Expres
 ***
 # Build
 1. Prerequisite 
-Copy the sub-folder of the **chaincode**  into your `$GOPATH/src`
+  * Copy the sub-folder of the **chaincode**  into your `$GOPATH/src`
+  * setup the runtime environment
 2. To install the dependencies
 ```js
 npm install

@@ -14,7 +14,6 @@ const ACME_CLIENT_CONNECTION_PROFILE_PATH = './profiles/acme-client.yaml'
 const BUDGET_CLIENT_CONNECTION_PROFILE_PATH = './profiles/budget-client.yaml'
 
 const USER_NAME = 'Admin'   // Non admin identity will lead to 'access denied' try User1
-const CHAINCODE_PATH = path.resolve(__dirname, './chaincode/v1/token');
 
 //To install the chaincode in $GOPATH/src/chaincodePath
 exports.installChaincode = async function(orgName,peers,chaincodePath,chaincodeId,chaincodeVersion,channelNames,chaincodeType){
