@@ -1,6 +1,5 @@
 > # Hyperledger Fabric RESTful API based on node Express
 > TOM ZHAI
-<img src="https://github.com/zhaizhonghao/HLF-NodeSDK/blob/master/img/hyperledger-icon.jpg" height="30%">
 
 # Description
 This project shows the RESTful API built on the fabric nodeSDK using node Express.
@@ -37,13 +36,14 @@ node app.js
 * Export the chosen identity from the wallet
 * Install the chaincode in the specific channel
 * Instantiate the chaincode in the specific channel
-* Query the specific channel
-* Invoke the specific channel
+* Query the specific chaincode
+* Invoke the specific chaincode
 
 # TODO
 
 * Create the channel
 * Join the channel
+* Upgrade the chaincode
 * Generate the Identity
 * Add a new organization
 * Add a new peer
