@@ -24,7 +24,6 @@ node app.js
 # DOC for API
 
 * Initiate the credStore
-
 * Query information of the specific peer
 * Query the height of the lastest block
 * Query the block information by the block height
@@ -34,6 +33,8 @@ node app.js
 * Import the identity into the wallet
 * List the identities existing in the wallet
 * Export the chosen identity from the wallet
+* Create the channel
+* Join the channel
 * Install the chaincode in the specific channel
 * Instantiate the chaincode in the specific channel
 * Query the specific chaincode
@@ -41,8 +42,8 @@ node app.js
 
 # TODO
 
-* Create the channel
-* Join the channel
+* ~~Create the channel~~
+* ~~Join the channel~~
 * Upgrade the chaincode
 * Generate the Identity
 * Add a new organization

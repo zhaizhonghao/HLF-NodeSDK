@@ -93,6 +93,30 @@ app.get('/api/channel/getTransactionById/:orgName/:channelName/:txId',async(req,
 
 });
 
+//To create the channel
+app.post('/api/channel/createChannel', async (req,res)=>{
+    try {
+        let result = await ChaincodeManager.createChannel(req.body.orgName,req.body.channelName,req.body.channelConfigPath);
+        //TODO 
+        if(!result) return res.status(404).send('Fail to create the channel!');
+        res.send(result);
+    } catch (error) {
+        return res.status(400).send('Fail to create the channel!');
+    }
+});
+
+//To join the channel
+app.post('/api/channel/joinChannel', async (req,res)=>{
+    try {
+        let result = await ChaincodeManager.joinChannel(req.body.orgName,req.body.channelName,req.body.peers);
+        //TODO 
+        if(!result) return res.status(404).send('Fail to join the channel!');
+        res.send(result);
+    } catch (error) {
+        return res.status(400).send('Fail to join the channel!');
+    }
+});
+
 //To install the chaincode which is placed in $GOPATH/src
 app.post('/api/channel/installChaincode',async (req,res)=>{
     let result 
@@ -203,8 +227,6 @@ app.post('/api/chaincode/invoke',async (req,res)=>{
     console.log(answer);
     res.send({Response : answer});
 });
-
-
 
 
 

@@ -23,6 +23,7 @@ var client = {}
  * Gathers and prints the specified peer's info
  */
 exports.getPeerInfo = async function(org,peerName) {
+
     // Initialize the credential store
     client = await setupClient(org)
     
@@ -85,9 +86,7 @@ exports.getPeerInfo = async function(org,peerName) {
         chaincodeInstalled : chaincodeInstalled,
         network : network
     }
-
     return peerInfo;
-
 }
 
 
