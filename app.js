@@ -151,6 +151,23 @@ app.post('/api/channel/instantiateChaincode',async (req,res)=>{
     res.send({result : 'chaincode instantiated!'});    
 });
 
+//To upgrade the chaincode
+app.post('/api/channel/upgradeChaincode',async (req,res)=>{
+    let result 
+        = await ChaincodeManager
+                .upgradeChaincode(
+                    req.body.orgName,
+                    req.body.peers,
+                    req.body.chaincodeId,
+                    req.body.chaincodeVersion,
+                    req.body.channelNames,
+                    req.body.chaincodeType,
+                    req.body.args);    
+    //TODO 
+    if(!result) return res.status(404).send({result:'The transaction is not found'});
+    res.send({result : 'chaincode upgrade!'});    
+});
+
 /**
  * Using the high level sdk fabric-network
  */

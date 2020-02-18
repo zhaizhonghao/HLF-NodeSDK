@@ -37,6 +37,7 @@ node app.js
 * Join the channel
 * Install the chaincode in the specific channel
 * Instantiate the chaincode in the specific channel
+* upgrade the chaincode
 * Query the specific chaincode
 * Invoke the specific chaincode
 
@@ -44,7 +45,7 @@ node app.js
 
 * ~~Create the channel~~
 * ~~Join the channel~~
-* Upgrade the chaincode
+* ~~Upgrade the chaincode~~
 * Generate the Identity
 * Add a new organization
 * Add a new peer
