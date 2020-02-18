@@ -46,6 +46,7 @@ node app.js
 * ~~Create the channel~~
 * ~~Join the channel~~
 * ~~Upgrade the chaincode~~
+* Refactoring
 * Generate the Identity
 * Add a new organization
 * Add a new peer
